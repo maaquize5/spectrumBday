@@ -25,7 +25,9 @@
             color: var(--cyber-cyan);
             font-family: var(--font-mono);
             margin: 0;
-            overflow: hidden; 
+            overflow: hidden;
+            padding: 15px;
+            box-sizing: border-box;
             height: 100vh;
             width: 100vw;
             position: relative;
@@ -37,7 +39,7 @@
             align-items: center;
             height: 100vh;
             width: 100%;
-            padding: 2vh 2vw;
+            padding: 3vh 3vw;
             box-sizing: border-box;
             perspective: 1500px;
         }
@@ -51,8 +53,18 @@
 
         #boot-sequence {
             position: fixed;
-            top: 5vh; left: 3vw;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
             z-index: 10;
+            width: fit-content;
+            min-width: 700px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: flex-start;
+            text-align: left;
+            font-family: 'Fira Code', monospace;
             font-size: clamp(12px, 1.5vh, 16px);
             font-weight: 500;
             text-shadow: 0 0 8px var(--cyber-cyan);
@@ -74,9 +86,9 @@
             background: var(--bg-card);
             border: 2px solid var(--cyber-purple);
             width: 100%;
-            max-width: 1000px;
-            max-height: 94vh; 
-            padding: 3vh 4vw; 
+            max-width: 900px;
+            max-height: 85vh;
+            padding: 2vh 3vw;
             backdrop-filter: blur(10px);
             position: relative;
             z-index: 5;
@@ -85,8 +97,10 @@
             transition: opacity 1s cubic-bezier(0.075, 0.82, 0.165, 1), transform 1s cubic-bezier(0.075, 0.82, 0.165, 1), box-shadow 2s ease;
             display: flex;
             flex-direction: column;
-            justify-content: space-between; 
-            gap: 1.5vh; 
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            gap: 1vh;
             will-change: transform;
             animation: card-energy 4s infinite alternate ease-in-out;
             box-sizing: border-box;
@@ -107,7 +121,9 @@
         .bottom-right { bottom: -3px; right: -3px; border-left: none; border-top: none; }
 
         .header {
-            display: flex; justify-content: space-between; align-items: center;
+            display: flex; justify-content: center;
+            align-items: center;
+            text-align: center;align-items: center;
             border-bottom: 1px solid rgba(0, 255, 255, 0.3); padding-bottom: 1vh;
             font-size: clamp(10px, 1.2vh, 13px); letter-spacing: 1px; color: #b19ffb; font-weight: bold;
         }
@@ -118,7 +134,7 @@
 
         .bday-text-huge {
             font-family: var(--font-tech);
-            font-size: clamp(25px, 5vh, 60px); 
+            font-size: clamp(22px, 4vh, 45px);
             font-weight: 900;
             color: var(--cyber-cyan);
             text-shadow: 0 0 15px rgba(0, 255, 255, 0.8), 0 0 30px var(--cyber-purple);
@@ -128,20 +144,20 @@
         }
 
         .glitch-name {
-            font-family: var(--font-tech); font-size: clamp(18px, 3.5vh, 35px); font-weight: 900;
+            font-family: var(--font-tech); font-size: clamp(18px, 3vh, 30px); font-weight: 900;
             color: var(--text-white); text-shadow: 0 0 10px var(--cyber-cyan), 2px 2px var(--cyber-purple);
             animation: text-pulse 1.5s infinite alternate; cursor: pointer; display: inline-block; transition: all 0.2s;
         }
         .glitch-name:hover { text-shadow: 0 0 25px var(--cyber-cyan), -3px -3px var(--alert-red); transform: scale(1.02); }
         .subtitle { font-size: clamp(12px, 1.6vh, 16px); color: #a594f9; margin-top: 0.5vh; font-weight: 500;}
 
-        .profile-and-code { display: flex; align-items: center; justify-content: center; gap: 3vw; flex-wrap: wrap; }
+        .profile-and-code { display: flex; align-items: center; justify-content: center; gap: 2vw; flex-wrap: wrap; width:100%; max-width:850px; margin:0 auto; }
 
         .profile-frame {
             position: relative; 
-            width: clamp(130px, 25vh, 250px); 
-            height: clamp(130px, 25vh, 250px); 
-            border: 2px solid var(--cyber-cyan); border-radius: 8px; overflow: hidden;
+            width: clamp(120px, 20vh, 180px);
+            height: clamp(120px, 20vh, 180px); 
+            border: 2px solid var(--cyber-cyan); border-radius: 50%; overflow: hidden;
             box-shadow: 0 0 15px var(--cyber-purple); flex-shrink: 0;
         }
         .profile-frame img {
@@ -161,15 +177,16 @@
 
         .code-box {
             flex: 1;
-            min-width: 300px;
+            min-width: 280px;
+            max-width: 500px;
             background: rgba(3, 1, 10, 0.95);
             border: 1px solid var(--cyber-purple); border-left: 4px solid var(--cyber-cyan);
             padding: 2vh 2vw; 
-            font-size: clamp(13px, 1.8vh, 18px); 
-            line-height: 1.6; font-weight: 500;
+            font-size: clamp(12px,1.5vh,16px);
+            line-height: 1.4; font-weight: 500;
             box-shadow: inset 0 0 20px rgba(0,0,0,0.8);
             box-sizing: border-box;
-            display: flex; flex-direction: column; justify-content: center;
+            display: flex; flex-direction: column; justify-content: center; text-align:left; align-items:flex-start;
         }
         .code-header { color: #888; font-size: clamp(10px, 1.2vh, 13px); border-bottom: 1px dashed #221a40; margin-bottom: 1vh; padding-bottom: 0.5vh; font-weight: normal; }
         .kw { color: #ff00aa; font-weight: bold; } 
@@ -178,7 +195,7 @@
 
         .spectrum-area { text-align: center; position: relative; }
         .spectrum-logo-big {
-            font-family: var(--font-tech); font-size: clamp(35px, 6vh, 80px); font-weight: 900; letter-spacing: -1px;
+            font-family: var(--font-tech); font-size: clamp(30px,5vh,60px); font-weight: 900; letter-spacing: -1px;
             background: linear-gradient(to bottom, #ffffff 0%, #a1a1a1 50%, #ffffff 100%);
             -webkit-background-clip: text; -webkit-text-fill-color: transparent;
             filter: drop-shadow(0 0 15px rgba(0,255,255,0.4)); display: inline-block; cursor: crosshair;
@@ -189,8 +206,10 @@
             vertical-align: top; margin-left: -5px; box-shadow: 0 0 10px var(--cyber-purple); animation: badge-blink 2s infinite alternate;
         }
 
-        .metrics-grid { display: flex; justify-content: space-between; border-top: 1px solid #2d1b54; padding-top: 1.5vh; gap: 1vw;}
-        .metric-card { flex: 1; background: rgba(0,0,0,0.4); padding: 1.5vh 1vw; border-radius: 4px; text-align: center; transition: all 0.3s; }
+        .metrics-grid { display: flex; justify-content: center;
+            align-items: center;
+            text-align: center;border-top: 1px solid #2d1b54; padding-top: 1.5vh; gap: 1vw;}
+        .metric-card { flex: 1; background: rgba(0,0,0,0.4); padding: .8vh .5vw; border-radius: 4px; text-align: center; transition: all 0.3s; }
         .metric-card:hover { transform: translateY(-3px); background: rgba(0,255,255,0.1); box-shadow: 0 0 15px rgba(0,255,255,0.2); }
         .m-title { font-size: clamp(9px, 1.1vh, 11px); color: #7665c4; letter-spacing: 1px; margin-bottom: 0.5vh; font-weight: bold;}
         .m-val { font-family: var(--font-tech); font-size: clamp(12px, 1.8vh, 18px); color: var(--text-white); }
@@ -229,7 +248,18 @@
         .access-granted.show { opacity: 1; transform: translate(-50%, -50%) scale(1); animation: glitch-blink 0.2s 3; }
 
         body.red-team { --cyber-cyan: #ff0055; --cyber-purple: #3a0013; --cyber-violet: #ff00aa; background-color: #0d0006; }
-    </style>
+    
+        #dynamic-code{
+            width:100%;
+            text-align:left;
+            white-space:normal;
+        }
+        #dynamic-code div{
+            width:100%;
+            text-align:left;
+        }
+
+</style>
 </head>
 <body>
 
@@ -392,7 +422,8 @@
                 } else { bootContainer.innerHTML += '<br>'; bootLineIdx++; bootCharIdx = 0; setTimeout(typeBoot, 200); }
             } else {
                 setTimeout(() => {
-                    bootContainer.style.transition = "opacity 0.5s"; bootContainer.style.opacity = 0;
+                    bootContainer.style.transition = "opacity 0.8s ease, transform 0.8s ease";
+                    bootContainer.style.transform = "translate(-50%, -50%) scale(0.9)"; bootContainer.style.opacity = 0;
                     setTimeout(() => {
                         bootContainer.style.display = 'none'; cardElement.classList.add('active'); setTimeout(typeCardCode, 400);
                     }, 500);
