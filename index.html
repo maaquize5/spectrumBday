@@ -158,7 +158,10 @@
             width: clamp(120px, 20vh, 180px);
             height: clamp(120px, 20vh, 180px); 
             border: 2px solid var(--cyber-cyan); border-radius: 50%; overflow: hidden;
-            box-shadow: 0 0 15px var(--cyber-purple); flex-shrink: 0;
+            box-shadow:
+            0 0 20px #00ffff,
+            0 0 40px rgba(0,255,255,.4);
+            flex-shrink: 0;
         }
         .profile-frame img {
             width: 100%; height: 100%; object-fit: cover;
@@ -209,7 +212,7 @@
         .metrics-grid { display: flex; justify-content: center;
             align-items: center;
             text-align: center;border-top: 1px solid #2d1b54; padding-top: 1.5vh; gap: 1vw;}
-        .metric-card { flex: 1; background: rgba(0,0,0,0.4); padding: .8vh .5vw; border-radius: 4px; text-align: center; transition: all 0.3s; }
+        .metric-card { transform: scale(.85); flex: 1; background: rgba(0,0,0,0.4); padding: .8vh .5vw; border-radius: 4px; text-align: center; transition: all 0.3s; }
         .metric-card:hover { transform: translateY(-3px); background: rgba(0,255,255,0.1); box-shadow: 0 0 15px rgba(0,255,255,0.2); }
         .m-title { font-size: clamp(9px, 1.1vh, 11px); color: #7665c4; letter-spacing: 1px; margin-bottom: 0.5vh; font-weight: bold;}
         .m-val { font-family: var(--font-tech); font-size: clamp(12px, 1.8vh, 18px); color: var(--text-white); }
@@ -344,6 +347,40 @@
     }
 }
 
+
+.status-panel{
+    width:100%;
+    max-width:700px;
+    margin:10px auto;
+    background:rgba(0,255,255,.05);
+    border:1px solid rgba(0,255,255,.4);
+    border-left:4px solid #00ffff;
+    padding:12px 18px;
+    box-shadow:0 0 15px rgba(0,255,255,.15), inset 0 0 10px rgba(0,255,255,.05);
+    font-family:'Fira Code', monospace;
+    box-sizing:border-box;
+}
+.status-title{
+    text-align:center;
+    color:#00ffff;
+    font-weight:bold;
+    letter-spacing:2px;
+    margin-bottom:12px;
+}
+.status-row{
+    display:flex;
+    justify-content:space-between;
+    padding:6px 0;
+    border-bottom:1px dashed rgba(0,255,255,.15);
+}
+.status-row:last-child{
+    border-bottom:none;
+}
+.status-ok{
+    color:#00ff88;
+    font-weight:bold;
+}
+
 </style>
 </head>
 <body>
@@ -390,25 +427,28 @@
                 <div style="font-size: clamp(10px, 1.4vh, 14px); font-weight: bold; letter-spacing: 2px; color: #b19ffb; margin-top: 0.5vh;">CIBERSEGURIDAD, RIESGOS Y HACKING</div>
             </div>
 
-            <div class="metrics-grid">
-                <div class="metric-card">
-                    <div class="m-title">TRAFFIC ANALYZED</div>
-                    <div class="m-val" id="val-traffic">284 Pkts/s</div>
-                    <div class="m-bar"><div class="m-fill" id="bar-traffic" style="width: 65%;"></div></div>
-                </div>
-                <div class="metric-card">
-                    <div class="m-title">INSPIRATION LEVEL</div>
-                    <div class="m-val">OVERFLOW (∞)</div>
-                    <div class="m-bar"><div class="m-fill" style="width: 100%;"></div></div>
-                </div>
-                <div class="metric-card">
-                    <div class="m-title">DEFENSE FIREWALL</div>
-                    <div class="m-val" id="val-fw">99.98% LOAD</div>
-                    <div class="m-bar"><div class="m-fill" id="bar-fw" style="width: 99%;"></div></div>
-                </div>
-            </div>
+            
+<div class="status-panel">
+    <div class="status-title">[ SPECTRUM CSIRT STATUS ]</div>
+
+    <div class="status-row">
+        <span>● BDAY PROTOCOL</span>
+        <span class="status-ok">ACTIVE</span>
+    </div>
+
+    <div class="status-row">
+        <span>● HAPPINESS PAYLOAD</span>
+        <span class="status-ok">DELIVERED</span>
+    </div>
+
+    <div class="status-row">
+        <span>● CELEBRATION MODE</span>
+        <span class="status-ok">ENABLED</span>
+    </div>
+</div>
 
             <div class="footer-sig">
+
                 Un cordial saludo de sus estudiantes de <span id="sigHover">SPECTRUM</span><br>
                 <span class="footer-subtitle">Ciberseguridad, Riesgos y Hacking</span> <span style="font-family: var(--font-tech); color: var(--cyber-cyan);">✔</span>
             </div>
@@ -419,6 +459,7 @@
         // 1. LIENZO INTERACTIVO PROFUNDO (Fijo)
         const canvas = document.getElementById('network-canvas');
         const ctx = canvas.getContext('2d');
+        const isMobile = window.innerWidth < 768;
         let particles = [];
         let mouse = { x: null, y: null, radius: 150 };
 
@@ -456,7 +497,9 @@
         }
 
         function initParticles() {
-            particles = []; let count = Math.floor((canvas.width * canvas.height) / 8000);
+            particles = []; let count = isMobile
+                ? Math.floor((canvas.width * canvas.height) / 25000)
+                : Math.floor((canvas.width * canvas.height) / 8000);
             for(let i=0; i<count; i++) particles.push(new Particle());
         }
 
@@ -467,7 +510,8 @@
                 for (let j = i + 1; j < particles.length; j++) {
                     let dx = particles[i].x - particles[j].x; let dy = particles[i].y - particles[j].y;
                     let dist = Math.sqrt(dx*dx + dy*dy);
-                    if (dist < 120) {
+                    const maxDistance = isMobile ? 70 : 120;
+                    if (dist < maxDistance) {
                         ctx.beginPath(); ctx.moveTo(particles[i].x, particles[i].y); ctx.lineTo(particles[j].x, particles[j].y);
                         ctx.strokeStyle = `rgba(106, 13, 173, ${1 - dist/120})`; ctx.lineWidth = 0.8; ctx.stroke();
                     }
@@ -503,7 +547,7 @@
         function typeBoot() {
             if (bootLineIdx < bootLines.length) {
                 if (bootCharIdx < bootLines[bootLineIdx].length) {
-                    bootContainer.innerHTML += bootLines[bootLineIdx].charAt(bootCharIdx); bootCharIdx++; setTimeout(typeBoot, 15);
+                    bootContainer.innerHTML += bootLines[bootLineIdx].charAt(bootCharIdx); bootCharIdx++; setTimeout(typeBoot, 25);
                 } else { bootContainer.innerHTML += '<br>'; bootLineIdx++; bootCharIdx = 0; setTimeout(typeBoot, 200); }
             } else {
                 setTimeout(() => {
