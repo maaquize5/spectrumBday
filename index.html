@@ -24,7 +24,6 @@
             color: var(--cyber-cyan);
             font-family: var(--font-mono);
             margin: 0;
-            /* Bloqueamos el scroll externo para forzar el encaje perfecto */
             overflow: hidden; 
             height: 100vh;
             width: 100vw;
@@ -70,14 +69,13 @@
         }
         @keyframes blink { 50% { opacity: 0; } }
 
-        /* TARJETA PRINCIPAL - Ahora usa flex y gap relativo a la pantalla */
         .cyber-card {
             background: var(--bg-card);
             border: 2px solid var(--cyber-purple);
             width: 100%;
             max-width: 1000px;
-            max-height: 94vh; /* Nunca pasará del 94% de la altura de la pantalla */
-            padding: 3vh 4vw; /* Padding relativo */
+            max-height: 94vh; 
+            padding: 3vh 4vw; 
             backdrop-filter: blur(10px);
             position: relative;
             z-index: 5;
@@ -86,8 +84,8 @@
             transition: opacity 1s cubic-bezier(0.075, 0.82, 0.165, 1), transform 1s cubic-bezier(0.075, 0.82, 0.165, 1), box-shadow 2s ease;
             display: flex;
             flex-direction: column;
-            justify-content: space-between; /* Distribuye el espacio sin apretar */
-            gap: 1.5vh; /* Separación dinámica entre elementos */
+            justify-content: space-between; 
+            gap: 1.5vh; 
             will-change: transform;
             animation: card-energy 4s infinite alternate ease-in-out;
             box-sizing: border-box;
@@ -119,7 +117,7 @@
 
         .bday-text-huge {
             font-family: var(--font-tech);
-            font-size: clamp(25px, 5vh, 60px); /* Tamaño dictado por el alto de pantalla */
+            font-size: clamp(25px, 5vh, 60px); 
             font-weight: 900;
             color: var(--cyber-cyan);
             text-shadow: 0 0 15px rgba(0, 255, 255, 0.8), 0 0 30px var(--cyber-purple);
@@ -136,13 +134,16 @@
         .glitch-name:hover { text-shadow: 0 0 25px var(--cyber-cyan), -3px -3px var(--alert-red); transform: scale(1.02); }
         .subtitle { font-size: clamp(12px, 1.6vh, 16px); color: #a594f9; margin-top: 0.5vh; font-weight: 500;}
 
-        .profile-and-code { display: flex; align-items: stretch; justify-content: center; gap: 2vw; }
+        /* AQUI SE AJUSTA EL CENTRADO DE LA FOTO Y EL CODIGO */
+        .profile-and-code { display: flex; align-items: center; justify-content: center; gap: 3vw; flex-wrap: wrap; }
 
+        /* AQUI SE HACE LA FOTO MAS GRANDE */
         .profile-frame {
-            position: relative; width: clamp(80px, 15vh, 140px); height: clamp(80px, 15vh, 140px);
+            position: relative; 
+            width: clamp(130px, 25vh, 250px); /* Tamaño ampliado significativamente */
+            height: clamp(130px, 25vh, 250px); /* Tamaño ampliado significativamente */
             border: 2px solid var(--cyber-cyan); border-radius: 8px; overflow: hidden;
             box-shadow: 0 0 15px var(--cyber-purple); flex-shrink: 0;
-            align-self: center;
         }
         .profile-frame img {
             width: 100%; height: 100%; object-fit: cover;
@@ -161,6 +162,7 @@
 
         .code-box {
             flex: 1;
+            min-width: 300px;
             background: rgba(3, 1, 10, 0.95);
             border: 1px solid var(--cyber-purple); border-left: 4px solid var(--cyber-cyan);
             padding: 2vh 2vw; 
