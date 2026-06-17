@@ -135,14 +135,12 @@
         .glitch-name:hover { text-shadow: 0 0 25px var(--cyber-cyan), -3px -3px var(--alert-red); transform: scale(1.02); }
         .subtitle { font-size: clamp(12px, 1.6vh, 16px); color: #a594f9; margin-top: 0.5vh; font-weight: 500;}
 
-        /* AQUI SE AJUSTA EL CENTRADO DE LA FOTO Y EL CODIGO */
         .profile-and-code { display: flex; align-items: center; justify-content: center; gap: 3vw; flex-wrap: wrap; }
 
-        /* AQUI SE HACE LA FOTO MAS GRANDE */
         .profile-frame {
             position: relative; 
-            width: clamp(130px, 25vh, 250px); /* Tamaño ampliado significativamente */
-            height: clamp(130px, 25vh, 250px); /* Tamaño ampliado significativamente */
+            width: clamp(130px, 25vh, 250px); 
+            height: clamp(130px, 25vh, 250px); 
             border: 2px solid var(--cyber-cyan); border-radius: 8px; overflow: hidden;
             box-shadow: 0 0 15px var(--cyber-purple); flex-shrink: 0;
         }
@@ -204,6 +202,13 @@
         .footer-sig:hover span {
             color: var(--cyber-cyan);
             text-shadow: 0 0 10px var(--cyber-cyan), 0 0 20px var(--cyber-cyan), 0 0 40px var(--cyber-cyan);
+        }
+        .footer-subtitle {
+            display: block;
+            color: #887bb0;
+            font-size: 0.85em;
+            letter-spacing: 1px;
+            margin-top: 4px;
         }
 
         .global-scanner {
@@ -267,7 +272,7 @@
             <div class="spectrum-area">
                 <div class="spectrum-logo-big" id="spectrumLogo">SPECTRUM</div>
                 <span class="badge-csirt" title="Equipo de Respuesta ante Incidentes">CSIRT</span>
-                <div style="font-size: clamp(10px, 1.4vh, 14px); font-weight: bold; letter-spacing: 3px; color: #b19ffb; margin-top: 0.5vh;">CYBER RISK HACKERS</div>
+                <div style="font-size: clamp(10px, 1.4vh, 14px); font-weight: bold; letter-spacing: 2px; color: #b19ffb; margin-top: 0.5vh;">CIBERSEGURIDAD, RIESGOS Y HACKING</div>
             </div>
 
             <div class="metrics-grid">
@@ -289,7 +294,8 @@
             </div>
 
             <div class="footer-sig">
-                Un cordial saludo de sus estudiantes de <span id="sigHover">SPECTRUM</span> <span style="font-family: var(--font-tech);">✔</span>
+                Un cordial saludo de sus estudiantes de <span id="sigHover">SPECTRUM</span><br>
+                <span class="footer-subtitle">Ciberseguridad, Riesgos y Hacking</span> <span style="font-family: var(--font-tech); color: var(--cyber-cyan);">✔</span>
             </div>
         </div>
     </div>
